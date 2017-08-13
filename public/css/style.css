@@ -1,0 +1,100 @@
+html,body{
+    margin:0;
+    width:100%;
+    height: 100%;
+}
+div{
+    box-sizing: border-box;
+}
+.left-menu{
+    position: fixed;
+    width: 15%;
+    background-color: #eee;
+    height: 100%;
+    padding: 20px;
+}
+.content{
+    left: 15%;
+    background-color: #222;
+    width: 100%;
+    height: 100%;
+}
+.content-banner{
+
+    width: 100%;
+    height: 100%;
+}
+.content-image{
+
+    width: 100%;
+    height: 20%;
+}
+.content-information{
+
+    width: 100%;
+    height: 50%;
+}
+.content-footer{
+    background-color: #ccc;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15%;
+}
+.menu-item{
+    width: 100%;
+    height:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#000;
+    margin-bottom: 15px;
+}
+.menu-item a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-item:hover{
+    cursor: pointer;
+    transition: 2s;
+    background-color: #aaa;
+}
+.register-form{
+    width: 100%;
+    padding-left: 15%;
+    display: flex;
+    justify-content: center;
+    min-height: 90%;
+}
+.register-form-content{
+    background-color: rgba(200,200,200,0.2);
+    margin: 20px;
+    padding: 20px;
+    height: -moz-fit-content;
+    height: -webkit-fit-content;
+    height: -fit-content;
+    width: 20%;
+}
+
+
+form label{
+    display: block;
+    color: white;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+form input{
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    width: 100%;
+
+}
+form input:focus{
+    border: 2px solid #00aaff;
+}
+
+
+
