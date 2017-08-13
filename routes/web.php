@@ -21,7 +21,7 @@ Route::get("/register",function(){
 Route::post('/register',"UserController@insert");
 
 Route::get('/storage/images/{filename}',function($filename){
-    $path = storage_path().'\app/'.$filename;
+    $path = storage_path().'\app/images/'.$filename;
     $file = File::get($path);
     $type = File::mimeType($path);
 

@@ -20,19 +20,28 @@ div{
     height: 100%;
 }
 .content-banner{
-
+    padding-left: 15%;
     width: 100%;
     height: 100%;
 }
 .content-image{
-
+    display: flex;
+    justify-content: center;
     width: 100%;
-    height: 20%;
+    height: 60%;
+    padding-left: 15%;
+    flex-wrap: wrap;
 }
 .content-information{
-
     width: 100%;
     height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15%;
+    background-color: #2c3e50 ;
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .content-footer{
     background-color: #ccc;
@@ -124,9 +133,8 @@ form input:focus{
     display: flex;
     margin-left: 35%;
     margin-right: 15%;
-    background-color: #00aaff;
+    background-color:#ecf0f1 ;
     padding: 10px;
-
     align-items: center;
 }
 .content-game-content{
@@ -138,6 +146,53 @@ form input:focus{
     border: 1px solid black;
 
 }
+.button{
+    background-color:#2c3e50 ;
+    color:white;
+    border: none;
+    padding: 10px;
+    border-radius: 2px;
+
+}
+.button:hover{
+    background-color: #ccc;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.content-game-leaderboard{
+    width: 100%;
+    height: 72%;
+    background-color: #2c3e50;
+    margin-left: 2px;
+}
+.content-banner img{
+    height: 100%;
+    width: 100%;
+    filter:blur(5px);
+}
+
+.content-image div{
+    border: solid 2px #2c3e50;
+    width: 40%;
+    height: 90%;
+    margin: 20px;
+}
+
+.content-image div img{
+    width: 100%;
+    height: 100%;
+}
+.content-information div{
+
+    width: 40%;
+    height: 100%;
+    margin-top:100px ;
+}
+.content-game-leaderboard-status{
+    color: white;
+}
+
+
 
 
 

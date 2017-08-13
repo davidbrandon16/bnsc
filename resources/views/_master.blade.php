@@ -13,6 +13,11 @@
 </head>
 <body>
     <div class="left-menu">
+        @if(\Illuminate\Support\Facades\Auth::user())
+            <div>
+                <img src="{{url('/storage/'.\Illuminate\Support\Facades\Auth::user()->pp)}}" alt="" width="50" height="50">
+            </div>
+        @endif
         <span>Welcome,
         @if(\Illuminate\Support\Facades\Auth::user())
             {{\Illuminate\Support\Facades\Auth::user()->name}}
@@ -20,17 +25,17 @@
             Guest
         @endif
         </span>
+
         <div class="menu-item">
             <a href="{{url('/')}}">Home</a>
         </div>
         @if(\Illuminate\Support\Facades\Auth::user())
             <div class="menu-item">
-                <a href="{{url('/logout')}}">Logout</a>
-            </div>
-            <div class="menu-item">
                 <a href="{{url('/tetris')}}">Tetris</a>
             </div>
-
+            <div class="menu-item">
+                <a href="{{url('/logout')}}">Logout</a>
+            </div>
         @else
             <div class="menu-item">
                 <a href="{{url('/login')}}">Login</a>
