@@ -28,6 +28,7 @@ $(document).ready(function(){
         var BLUE = 3;
         var GREEN = 2;
         var tetris_blocks = [];
+        var game_over = false;
         // make map same with
         function mapping(){
             checkwin();
@@ -42,6 +43,7 @@ $(document).ready(function(){
         }
         // for rendering
         function loop(){
+            if (game_over) clearInterval(main);
             clear_map();
             mapping();
             checkwin();
@@ -49,6 +51,7 @@ $(document).ready(function(){
             run();
         }
         function checkwin(){
+            if(game_over) clearInterval(main);
             var can_clear =0;
             var height =-1;
             for(var i=0;i<total_block;i++){
@@ -122,6 +125,7 @@ $(document).ready(function(){
         }
 
         function tetris_block(type){
+            if(game_over) clearInterval(main);
             this.color = parseInt(Math.random()*3) +1;
             this.xs = [];
             this.ys = [];
@@ -133,8 +137,7 @@ $(document).ready(function(){
                     for (var i = 0; i <4; i++) {
                         this.xs[i] = i;
                         this.ys[i] = 0;
-
-                        if(map[this.ys[i]][this.xs[i]]!=0){
+                        if(map[this.ys[i]][this.xs[i]]!=0 && map[this.ys[i]][this.xs[i]]!== undefined){
                             console.log("masuk");
                             clearInterval(main);
                             gameOver();
@@ -146,7 +149,7 @@ $(document).ready(function(){
                         this.xs[i] = i%2;
                         if(i<2) this.ys[i] =0;
                         else this.ys[i] =1;
-                        if(map[this.ys[i]][this.xs[i]]!=0){
+                        if(map[this.ys[i]][this.xs[i]]!=0 && map[this.ys[i]][this.xs[i]]!== undefined){
                             console.log("masuka");
                             clearInterval(main);
                             gameOver();
@@ -159,7 +162,7 @@ $(document).ready(function(){
                         else this.xs[i] =0;
                         if(i==3) this.ys[i] =i-1;
                         else this.ys[i] =i;
-                        if(map[this.ys[i]][this.xs[i]]!=0){
+                        if(map[this.ys[i]][this.xs[i]]!=0 && map[this.ys[i]][this.xs[i]]!== undefined){
                             clearInterval(main);
                             gameOver();
                         }
@@ -173,7 +176,7 @@ $(document).ready(function(){
 
                         if(i<2) this.xs[i] = 0;
                         else this.xs[i] =1;
-                        if(map[this.ys[i]][this.xs[i]]!=0){
+                        if(map[this.ys[i]][this.xs[i]]!=0 && map[this.ys[i]][this.xs[i]]!== undefined){
                             clearInterval(main);
                             gameOver();
                         }
@@ -189,7 +192,7 @@ $(document).ready(function(){
                             this.xs[i]=i;
                             this.ys[i]=0;
                         }
-                        if(map[this.ys[i]][this.xs[i]]!=0){
+                        if(map[this.ys[i]][this.xs[i]]!=0 && map[this.ys[i]][this.xs[i]]!== undefined){
                             clearInterval(main);
                             gameOver();
                         }
@@ -202,6 +205,7 @@ $(document).ready(function(){
             max = getMaximum("y",tetris_blocks[tetris_blocks.length-1]);
             if(max ==total_block-1) {
                 tetris_blocks[tetris_blocks.length-1].is_landed = 1;
+                // bentuknya ada 5 jadi di ganti randomnya aja kali 5
                 tetris_blocks.push(new tetris_block(parseInt(Math.random()*2)+1));
                 return;
             };
@@ -209,7 +213,8 @@ $(document).ready(function(){
                 tetris_blocks[tetris_blocks.length-1].ys[i]++;
             }
         }
-        tetris_blocks.push(new tetris_block(parseInt(Math.random()*2)+1));
+        // bentuknya ada 5 jadi di ganti randomnya aja kali 5
+        tetris_blocks.push(new tetris_block(parseInt(Math.random()*5)+1));
         loop();
         var main = setInterval(loop,1000);
         function getMininum(type,obj){
@@ -287,9 +292,24 @@ $(document).ready(function(){
 
 
         function gameOver(){
-            console.log("kepanggil");
+            if(game_over) return;
+            game_over = true;
             $("#status").html("Game Over");
-
+            var token = $("input[name='_token']").val();
+            $.ajax({
+                url:"/score",
+                data:{"_token":token,"score":$("#score").html(),"type":"tetris"},
+                method:"post"
+            }).done(function (obj){
+                $("#btnReset").show("fast");
+            });
         }
+        $("#btnReset").click(function(){
+            $("#status").html("Play");
+            $("#score").html("0");
+            tetris();
+            $(this).hide("slow");
+        });
+
     }
 });

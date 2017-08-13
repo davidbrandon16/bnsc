@@ -36,6 +36,5 @@ Route::get('/login',function(){
 });
 Route::post('/login','UserController@login');
 Route::get('/logout','UserController@logout');
-Route::get('/tetris',function(){
-    return view('tetris');
-});
+Route::get('/tetris','ScoreController@tetris');
+Route::post("/score","ScoreController@insert");

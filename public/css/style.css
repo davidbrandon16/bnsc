@@ -191,6 +191,14 @@ form input:focus{
 .content-game-leaderboard-status{
     color: white;
 }
+.content-game-leaderboard-score{
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-top :solid 2px white;
+}
+.content-game-leaderboard-score div{
+    margin:10px ;
+}
 
 
 
