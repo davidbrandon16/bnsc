@@ -13,6 +13,9 @@
 </head>
 <body>
     <div class="left-menu">
+        <div id="logo">
+            <img src="{{asset("Photoshop/logo.png")}}" alt="" >
+        </div>
         @if(\Illuminate\Support\Facades\Auth::user())
             <div>
                 <img src="{{url('/storage/'.\Illuminate\Support\Facades\Auth::user()->pp)}}" alt="" width="50" height="50">

@@ -199,7 +199,14 @@ form input:focus{
 .content-game-leaderboard-score div{
     margin:10px ;
 }
-
+#logo{
+    width: 100%;
+    height:100px
+}
+#logo img{
+    width: 100%;
+    height:100%;
+}
 
 
 
