@@ -17,3 +17,25 @@ Route::get('/', function () {
 Route::get("/register",function(){
     return view('register');
 });
+
+Route::post('/register',"UserController@insert");
+
+Route::get('/storage/images/{filename}',function($filename){
+    $path = storage_path().'\app/'.$filename;
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+});
+
+Route::get('/login',function(){
+    return view("login");
+    return view("login");
+});
+Route::post('/login','UserController@login');
+Route::get('/logout','UserController@logout');
+Route::get('/tetris',function(){
+    return view('tetris');
+});

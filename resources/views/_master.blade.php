@@ -9,18 +9,38 @@
     <link rel="stylesheet" href="{{asset("css/style.css")}}">
     <script src="{{asset("js/jquery-3.2.1.js")}}"></script>
     <script src="{{asset("js/script.js")}}"></script>
+    @yield('script')
 </head>
 <body>
     <div class="left-menu">
+        <span>Welcome,
+        @if(\Illuminate\Support\Facades\Auth::user())
+            {{\Illuminate\Support\Facades\Auth::user()->name}}
+        @else
+            Guest
+        @endif
+        </span>
         <div class="menu-item">
             <a href="{{url('/')}}">Home</a>
         </div>
-        <div class="menu-item">
-            <a href="{{url('/register')}}">Register</a>
-        </div>
-        <div class="menu-item">
-            <a href="{{url('/tetris')}}">Tetris</a>
-        </div>
+        @if(\Illuminate\Support\Facades\Auth::user())
+            <div class="menu-item">
+                <a href="{{url('/logout')}}">Logout</a>
+            </div>
+            <div class="menu-item">
+                <a href="{{url('/tetris')}}">Tetris</a>
+            </div>
+
+        @else
+            <div class="menu-item">
+                <a href="{{url('/login')}}">Login</a>
+            </div>
+            <div class="menu-item">
+                <a href="{{url('/register')}}">Register</a>
+            </div>
+
+        @endif
+
     </div>
     <div class="content">
         @yield('content')
